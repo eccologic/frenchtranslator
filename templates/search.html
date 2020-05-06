@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h1 class="text-light">{{content.word}}</h1>
+<h5 class="text-light"><i>{{content.type}}</i></h3>
+<p class="text-light">{{content.translation}}</p>
+
+	{% if not_in_db %}
+		<form action="/save" method="post">
+		<button type="submit" name="save" class="btn-dark btn" value="{{content.word}};{{content.translation}}">Save word</button>
+		</form>
+		<form action="/delete" method="post">
+		<button type="button" value="{{content.word}}" class="btn btn-danger" disabled>Delete</button>
+		</form>
+	{% else %}
+		<form action="/save" method="post">
+		<button type="button" name="save" class="btn-dark btn" value="{{content.word}};{{content.translation}}" disabled>Save word</button>
+
+		</form>
+		<form action="/delete" method="post">
+		<button type="submit" name="delete-search" class="btn btn-danger" value="{{content.word}}">Delete</button>
+		</form>
+	{% endif %}	
+</div>
+{% endblock %}
+

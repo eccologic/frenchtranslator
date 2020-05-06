@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h3 class="mx-auto text-center mb-3 text-light">Search history</h2>
+      <div class="table-responsive">
+        <table class="table table-dark">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Word</th>
+      <th scope="col">Translation</th>
+      <th scope="col">Date</th>
+	  <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+        {% for word in words %}
+        <tr>
+              <td>{{word.word}}</td>
+              <td>{{word.translation}}</td>
+              <td>{{word.date}}</td>
+       </tr>
+        {% endfor %}
+  </tbody>
+</table>
+      </div>
+	  			<form action="/delete" method="post" class="mx-auto text-center">
+				<button type="submit" name="delete" class="btn btn-sm btn-danger mb-3" value="clear-history">Clear</button>
+				</form>
+</div>
+{% endblock %}
+
